@@ -19,11 +19,11 @@ struct ContentView: View {
     
     @State var fourthcircleColor : Color = Color.blue
     
-    @State var ops : [String] = ["100+20","900+120","101+120","106-80","103-120","950-459","10*27","199*28","45*24"]
+    @State var operations : [String] = ["100+20","900+120","101+120","106-80","103-120","950-459","10*27","199*28","45*24"]
     
-    @State var correct_ans = ["120","1020","221","26","-17","491","270","5572","1080"]
+    @State var correct_answers = ["120","1020","221","26","-17","491","270","5572","1080"]
     
-    @State var ans = [["120","100","90","80"],["978","576","776","1020"],["402","357","221","576"],["26","216","252","126"],["-17","17","-15","217"],["491","41","451","991"],["270","275","231","210"],["5572","2572","7572","3572"],["1080","1050","1010","950"]]
+    @State var answers = [["120","100","90","80"],["978","576","776","1020"],["402","357","221","576"],["26","216","252","126"],["-17","17","-15","217"],["491","41","451","991"],["270","275","231","210"],["5572","2572","7572","3572"],["1080","1050","1010","950"]]
     
     
     @State var index : Int = 0
@@ -32,9 +32,9 @@ struct ContentView: View {
     
     @State var subIndex : Int = 0
     
-    @State var isCorrectAns : Bool = false
+    @State var isCorrectAnswer : Bool = false
 
-    @State var ansCorr : Bool = false
+    @State var isAnswerCorrect : Bool = false
     
     @State var showLevelCompleted : Bool = false
     
@@ -44,7 +44,7 @@ struct ContentView: View {
         
         VStack (spacing: 30){
         
-        Text(ops[index])
+        Text(operations[index])
                 .font(.system(size: 30,weight: .bold))
             
          
@@ -53,14 +53,14 @@ struct ContentView: View {
             
             ZStack {
                 
-                Button(ans[index][subIndex]){
+                Button(answers[index][subIndex]){
                     
                     
-                    ansCorr = ansCorrect(expect: correct_ans[index], actual: ans[index][subIndex])
+                    isAnswerCorrect = answerCorrect(expect: correct_answers[index], actual: answers[index][subIndex])
                     
-                    isCorrectAns.toggle()
+                    isCorrectAnswer.toggle()
                     
-                    if ansCorr {
+                    if isAnswerCorrect {
                         self.firstcircleColor = Color.green
                     }else {
                         self.firstcircleColor = Color.red
@@ -75,8 +75,8 @@ struct ContentView: View {
                 .foregroundColor(.white)
                 .font(.system(size: 20,weight: .bold))
                 .animation(.easeOut(duration: 0.5))
-                .alert(isPresented: $isCorrectAns, content: {
-                    alertDialog(msg: ansCorr ? "Correct Answer" : "Wrong Answer")
+                .alert(isPresented: $isCorrectAnswer, content: {
+                    alertDialog(msg: isAnswerCorrect ? "Correct Answer" : "Wrong Answer")
                 })
                 
                 
@@ -86,13 +86,13 @@ struct ContentView: View {
             ZStack {
                 
                 
-                Button(ans[index][subIndex+1]){
+                Button(answers[index][subIndex+1]){
                     
-                    ansCorr = ansCorrect(expect: correct_ans[index], actual: ans[index][subIndex+1])
+                    isAnswerCorrect = answerCorrect(expect: correct_answers[index], actual: answers[index][subIndex+1])
                     
-                    isCorrectAns.toggle()
+                    isCorrectAnswer.toggle()
                     
-                    if ansCorr {
+                    if isAnswerCorrect {
                         self.secondcircleColor = Color.green
                     }else {
                         self.secondcircleColor = Color.red
@@ -108,8 +108,8 @@ struct ContentView: View {
                 .foregroundColor(.white)
                 .font(.system(size: 20,weight: .bold))
                 .animation(.easeOut(duration: 0.5))
-                .alert(isPresented: $isCorrectAns, content: {
-                    alertDialog(msg: ansCorr ? "Correct Answer" : "Wrong Answer")
+                .alert(isPresented: $isCorrectAnswer, content: {
+                    alertDialog(msg: isAnswerCorrect ? "Correct Answer" : "Wrong Answer")
                 })
                 
                 
@@ -125,13 +125,13 @@ struct ContentView: View {
             ZStack {
                 
                 
-                Button(ans[index][subIndex+2]){
+                Button(answers[index][subIndex+2]){
                     
-                    ansCorr = ansCorrect(expect: correct_ans[index], actual: ans[index][subIndex+2])
+                    isAnswerCorrect = answerCorrect(expect: correct_answers[index], actual: answers[index][subIndex+2])
                     
-                    isCorrectAns.toggle()
+                    isCorrectAnswer.toggle()
                     
-                    if ansCorr {
+                    if isAnswerCorrect {
                         self.thirdcircleColor = Color.green
                     }else {
                         self.thirdcircleColor = Color.red
@@ -146,8 +146,8 @@ struct ContentView: View {
                 .foregroundColor(.white)
                 .font(.system(size: 20,weight: .bold))
                 .animation(.easeOut(duration: 0.5))
-                .alert(isPresented: $isCorrectAns, content: {
-                    alertDialog(msg: ansCorr ? "Correct Answer" : "Wrong Answer")
+                .alert(isPresented: $isCorrectAnswer, content: {
+                    alertDialog(msg: isAnswerCorrect ? "Correct Answer" : "Wrong Answer")
                 })
                 
                 
@@ -156,13 +156,13 @@ struct ContentView: View {
             ZStack {
                 
                 
-                Button(ans[index][subIndex+3]){
+                Button(answers[index][subIndex+3]){
                     
-                    ansCorr = ansCorrect(expect: correct_ans[index], actual: ans[index][subIndex+3])
+                    isAnswerCorrect = answerCorrect(expect: correct_answers[index], actual: answers[index][subIndex+3])
                     
-                    isCorrectAns.toggle()
+                    isCorrectAnswer.toggle()
                     
-                    if ansCorr {
+                    if isAnswerCorrect {
                         self.fourthcircleColor = Color.green
                     }else {
                         self.fourthcircleColor = Color.red
@@ -177,8 +177,8 @@ struct ContentView: View {
                 .foregroundColor(.white)
                 .font(.system(size: 20,weight: .bold))
                 .animation(.easeOut(duration: 0.5))
-                .alert(isPresented: $isCorrectAns, content: {
-                    alertDialog(msg: ansCorr ? "Correct Answer" : "Wrong Answer")
+                .alert(isPresented: $isCorrectAnswer, content: {
+                    alertDialog(msg: isAnswerCorrect ? "Correct Answer" : "Wrong Answer")
                 })
                 
             }
@@ -204,7 +204,7 @@ struct ContentView: View {
     
     }
     
-    func ansCorrect(expect:String,actual:String)->Bool{
+    func answerCorrect(expect:String,actual:String)->Bool{
         if expect == actual {
             return true
         }else {
@@ -214,12 +214,12 @@ struct ContentView: View {
     
     func alertDialog(msg:String)->Alert {
         let alert : Alert = Alert(title: Text(msg), dismissButton: .default(Text("Ok")){
-            if index == correct_ans.count-1 {
+            if index == correct_answers.count-1 {
                 
                 self.showLevelCompleted.toggle()
                 
             }
-            if ansCorr && index < correct_ans.count-1{
+            if isAnswerCorrect && index < correct_answers.count-1{
                 self.index = self.index + 1
                 self.firstcircleColor = .blue
                 self.secondcircleColor = .blue
